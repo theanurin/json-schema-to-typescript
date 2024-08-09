@@ -1,6 +1,6 @@
 {
-  "name": "json-schema-to-typescript",
-  "version": "15.0.0",
+  "name": "@theanurin/json-schema-to-typescript",
+  "version": "15.0.0-1",
   "description": "compile json schema to typescript typings",
   "main": "dist/src/index.js",
   "bin": {
@@ -13,7 +13,7 @@
   "scripts": {
     "build": "npm run lint && npm run clean && npm run build:browser && npm run build:server",
     "build:browser": "browserify src/index.ts -s jstt -p tsify > dist/bundle.js",
-    "build:server": "tsc -d",
+    "build:server": "npm run clean && tsc -d",
     "clean": "shx rm -rf dist && mkdir dist",
     "format": "prettier \"{src,test}/*.ts\" --write",
     "format-check": "prettier \"{src,test}/*.ts\" --check",

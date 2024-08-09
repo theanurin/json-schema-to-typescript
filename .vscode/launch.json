@@ -2,11 +2,40 @@
   "version": "0.2.5",
   "configurations": [
     {
-        "type": "node",
-        "request": "launch",
-        "name": "Launch Program",
-        "program": "${workspaceRoot}/node_modules/.bin/ava ./dist/test/test.js",
-        "cwd": "${workspaceRoot}"
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceRoot}/node_modules/.bin/ava ./dist/test/test.js",
+      "cwd": "${workspaceRoot}"
+    },
+    {
+      "name": "Debug CLI",
+      "type": "node",
+      "request": "launch",
+      "preLaunchTask": "build:server",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [],
+      "skipFiles": [
+        "<node_internals>/**",
+      ],
+      "outFiles": [
+        "${workspaceFolder}/dist/src/**/*.js"
+      ],
+      "program": "${workspaceFolder}/dist/src/cli.js",
+      "cwd": "${workspaceFolder}/dist/src",
+      "args": [
+        "--input=.../src/schemas/**/*.schema.json",
+        "--output=.../src.gen",
+        "--additionalProperties=false",
+        "--cwd=.../src/schemas",
+        "--unknownAny",
+        "--unreachableDefinitions",
+        "--overrideHttpId=http://schemas.example.org/v1/ file:///.../src/schemas/v1",
+      ],
+      "env": {},
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "killBehavior": "polite"
     },
     {
       "type": "node",
