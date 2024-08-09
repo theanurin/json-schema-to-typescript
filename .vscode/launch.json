@@ -30,7 +30,7 @@
         "--cwd=.../src/schemas",
         "--unknownAny",
         "--unreachableDefinitions",
-        "--overrideHttpId=http://schemas.example.org/v1/ file:///.../src/schemas/v1",
+        "--overrideHttpId=http://schemas.example.org/v1/ file://${userHome}/my-project/src/schemas/v1/"
       ],
       "env": {},
       "console": "integratedTerminal",

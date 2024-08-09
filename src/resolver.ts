@@ -78,9 +78,15 @@ class MyResolver implements HTTPResolverOptions {
         const originalSchemaUrlStr: string = originalSchemaUrl.toString()
         if (file.url.startsWith(originalSchemaUrlStr)) {
           const overrideSchemaUrlStr: string = overrideSchemaUrl.toString()
-          const newUrl: URL = new URL(file.url.replace(originalSchemaUrlStr, overrideSchemaUrlStr))
-          const fileData = await readFile(newUrl)
-          return fileData
+          try {
+            const newUrl: URL = new URL(file.url.replace(originalSchemaUrlStr, overrideSchemaUrlStr))
+            const fileData = await readFile(newUrl)
+            return fileData
+          } catch (e) {
+            console.error(`Failed to replace '${originalSchemaUrlStr}' -> '${overrideSchemaUrlStr}'`)
+            console.error(e)
+            throw e
+          }
         }
       }
     }
